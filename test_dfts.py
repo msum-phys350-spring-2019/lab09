@@ -21,9 +21,25 @@ def test_import_dft():
     from dfts import dft
 
 
-def test_transform_of_zeros_is_zero_two():
+def test_length_of_transform_two():
     N = 101
     y = np.zeros(N)
     c = dft_two_loop(y)
+    assert len(c) == (N // 2 + 1)
+    np.testing.assert_allclose(np.abs(c), y)
+
+
+def test_length_of_transform_one():
+    N = 101
+    y = np.zeros(N)
+    c = dft_one_loop(y)
+    assert len(c) == (N // 2 + 1)
+    np.testing.assert_allclose(np.abs(c), y)
+
+
+def test_length_of_transform_dft():
+    N = 101
+    y = np.zeros(N)
+    c = dft(y)
     assert len(c) == (N // 2 + 1)
     np.testing.assert_allclose(np.abs(c), y)
